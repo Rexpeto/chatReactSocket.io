@@ -16,10 +16,11 @@ const socket = io(socketIp);
 
 function App() {
     const [message, getMessage] = useState("");
+    const [messages, setMessages] = useState([]);
 
     useEffect(() => {
         const getMessage = (message) => {
-            console.log(message);
+            setMessages([...messages, message]);
         };
 
         socket.on("message", getMessage);
@@ -27,12 +28,19 @@ function App() {
         return () => {
             socket.off("message", getMessage);
         };
-    }, []);
+    }, [messages]);
 
     //* Manejador de envio
     const handdlerSubmit = (e) => {
         e.preventDefault();
         socket.emit("message", message);
+        setMessages([
+            ...messages,
+            {
+                body: message,
+                from: "Yo",
+            },
+        ]);
         getMessage("");
     };
 
