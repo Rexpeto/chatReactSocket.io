@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/Logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat Socket.io</title>
   </head>
-  <body class="bg-gray-900 antialiased text-white">
-    <div id="root"></div>
+  <body class="bg-gray-900">
+    <div class="absolute z-[2] top-0 w-[50%] h-[50%] rounded-full bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%"></div>
+    <div class="absolute z-[2] bottom-0 right-0 w-[50%] h-[50%] rounded-full bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% bg-pink-600 to-90%"></div>
+    <div id="root" class="bg-gray-900/80 backdrop-blur-3xl backdrop-brightness-75 antialiased text-white relative z-[3] w-screen h-screen"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
