@@ -6,7 +6,13 @@ import {
 } from "react-icons/ri";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:5000");
+//* Ip del Socket con variables de entorno
+const socketIp =
+    `${import.meta.env.VITE_SOCKET_IP}:${import.meta.env.VITE_SOCKET_PORT}` ??
+    `http://localhost:${import.meta.env.VITE_SOCKET_PORT}`;
+
+//* Asignando la ip que debe utilizar el socket
+const socket = io(socketIp);
 
 function App() {
     const [message, getMessage] = useState("");
