@@ -11,10 +11,17 @@ const socket = io("http://localhost:5000");
 function App() {
     const [message, getMessage] = useState("");
 
+    //* Manejador de envio
+    const handdlerSubmit = (e) => {
+        e.preventDefault();
+        socket.emit("message", message);
+        getMessage("");
+    };
+
     return (
         <div className="container mx-auto px-4 h-screen flex items-center">
             <div className="w-full h-5/6 relative text-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <form>
+                <form onSubmit={handdlerSubmit}>
                     <div className="flex items-center px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-700 absolute bottom-0 w-full">
                         <button
                             type="button"
