@@ -1,8 +1,11 @@
+import { useState } from "react";
 import io from "socket.io-client";
 
 const socket = io("http://localhost:5000");
 
 function App() {
+    const [message, getMessage] = useState("");
+    
     return (
         <div className="container mx-auto px-4 h-screen flex items-center">
             <div className="w-full h-5/6 relative text-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -44,11 +47,13 @@ function App() {
                                 ></path>
                             </svg>
                         </button>
-                        <textarea
-                            rows="1"
+                        <input
+                            type="text"
+                            onChange={(e) => getMessage(e.target.value)}
+                            value={message}
                             className="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none transition-all duration-150"
                             placeholder="Escribe..."
-                        ></textarea>
+                        ></input>
                         <button
                             type="submit"
                             className="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600 transition-all duration-150"
