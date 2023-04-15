@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
     RiSendPlane2Fill,
     RiEmotionLaughLine,
@@ -10,6 +10,18 @@ const socket = io("http://localhost:5000");
 
 function App() {
     const [message, getMessage] = useState("");
+
+    useEffect(() => {
+        const getMessage = (message) => {
+            console.log(message);
+        };
+
+        socket.on("message", getMessage);
+
+        return () => {
+            socket.off("message", getMessage);
+        };
+    }, []);
 
     //* Manejador de envio
     const handdlerSubmit = (e) => {
